@@ -5,6 +5,7 @@ ALGORITHM       |   TIME-BEST  |  TIME-AVG  |  TIME-WORST  |  SPACE
 Bubble Sort     |     O(n)     |   O(n^2)   |    O(n^2)    |   O(1)
 Selection Sort  |     O(n^2)   |   O(n^2)   |    O(n^2)    |   O(1)
 Insertion Sort  |     O(n)     |   O(n^2)   |    O(n^2)    |   O(1)
+Merge Sort      |     O(nlogn) |   O(nlogn) |    O(nlogn)  |   O(n)
 
 
 Bubble Sort:
@@ -16,3 +17,6 @@ Selection Sort:
 Insertion Sort:
 	- Works well on nearly sorted data.
 	- Works well for sorting data that is streaming in in real time.
+
+Merge Sort:
+	-
