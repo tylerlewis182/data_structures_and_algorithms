@@ -1,6 +1,8 @@
 #include "singly_linked_list.h"
 #include <iostream>
+#include <limits>
 using namespace std;
+
 
 
 // constructor
@@ -9,11 +11,29 @@ List::List()
   head = nullptr;
   curr = nullptr;
   temp = nullptr;
+  _size = 0;
 }
 
 
-// add_node to the end of the list
-void List::add_node(int add_data)
+
+
+
+// search
+Node* List::search(int search_data)
+{
+  curr = head;
+  while(curr != nullptr && curr->data != search_data)
+  {
+    curr = curr->next;
+  }
+  return curr;
+}
+
+
+
+
+// push_back
+void List::push_back(int add_data)
 {
   // create a new node
   Node* n = new Node;
@@ -39,44 +59,78 @@ void List::add_node(int add_data)
     // point head at the new node
     head = n;
   }
+  _size++;
 }
 
 
-// delete the first list item whos data matches del_data
-void List::delete_node(int del_data)
+
+// pop
+int List::pop()
+{
+  // TODO: Finish pop method
+
+
+  return -1;
+}
+
+
+// remove
+void List::remove(int del_data)
 {
   // if the list is empty, return
   if(head == nullptr)
   {
-    // cout << "returned..." << endl;
     return;
   }
 
-  // if the first item in the list matches del_data
-  if(head->data == del_data)
-  {
-    temp = head->next;
-    delete head;
-    head = temp;
-    return;
-  }
+  // TODO: Finish remove
+  List::search(del_data); // might return nullptr...
 
-  // else
+
+}
+
+
+
+// size
+size_t List::size()
+{
+  return _size;
+}
+
+
+
+// min
+int List::min()
+{
   curr = head;
-  while(curr->next != nullptr)
+  int min_value = std::numeric_limits<int>::max();
+  while(curr != nullptr)
   {
-    // check if next item's data equals del_data
-    if(curr->next->data == del_data)
+    if(curr->data < min_value)
     {
-      // delete the node from the list
-      temp = curr->next->next;
-      delete curr->next;
-      curr->next = temp;
-      curr = nullptr;
-      temp = nullptr;
-      return;
+      min_value = curr->data;
     }
+    curr = curr->next;
   }
+  return min_value;
+}
+
+
+
+// max
+int List::max()
+{
+  curr = head;
+  int max_value = std::numeric_limits<int>::min();
+  while(curr != nullptr)
+  {
+    if(curr->data > max_value)
+    {
+      max_value = curr->data;
+    }
+    curr = curr->next;
+  }
+  return max_value;
 }
 
 
@@ -86,18 +140,18 @@ void List::print()
   // if the list is empty
   if(head == nullptr)
   {
-    cout << "[ ]" << endl;
+    cout << "[]" << endl;
   }
   else
   {
     curr = head;
-    cout << "[ ";
+    cout << "[";
     while(curr->next != nullptr)
     {
-      cout << curr->data << ", ";
+      cout << curr->data << ",";
       curr = curr->next;
     }
-    cout << curr->data << " ]" << endl;
+    cout << curr->data << "]" << endl;
     curr = nullptr;
   }
 }
